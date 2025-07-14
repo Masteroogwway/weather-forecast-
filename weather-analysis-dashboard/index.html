@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Data Analysis and Prediction Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/date-fns@2.29.3/index.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="dashboard-header">
+            <h1>Weather Data Analysis and Prediction Dashboard</h1>
+            <p class="text-secondary">Analyze historical weather data and predict future temperature trends using advanced time series analysis and regression techniques.</p>
+        </header>
+
+        <!-- Tab Navigation -->
+        <nav class="tab-navigation">
+            <button class="tab-btn active" data-tab="overview">Overview</button>
+            <button class="tab-btn" data-tab="time-series">Time Series Analysis</button>
+            <button class="tab-btn" data-tab="seasonal">Seasonal Patterns</button>
+            <button class="tab-btn" data-tab="model-comparison">Model Comparison</button>
+            <button class="tab-btn" data-tab="forecast">Forecast</button>
+        </nav>
+
+        <!-- Tab Content -->
+        <main class="tab-content">
+            <!-- Overview Tab -->
+            <div id="overview" class="tab-panel active">
+                <div class="overview-stats">
+                    <div class="stat-card">
+                        <h3>Dataset Period</h3>
+                        <p class="stat-value">May 1 - July 5, 2017</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Temperature Range</h3>
+                        <p class="stat-value">-8.4°F to 53.2°F</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Average Temperature</h3>
+                        <p class="stat-value">18.4°F</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Standard Deviation</h3>
+                        <p class="stat-value">13.9°F</p>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <h3>Temperature Time Series</h3>
+                    <canvas id="overviewChart" height="400"></canvas>
+                </div>
+            </div>
+
+            <!-- Time Series Analysis Tab -->
+            <div id="time-series" class="tab-panel">
+                <div class="component-controls">
+                    <h3>Decomposed Components</h3>
+                    <div class="component-toggles">
+                        <button class="btn btn--secondary component-btn active" data-component="trend">Trend</button>
+                        <button class="btn btn--secondary component-btn" data-component="seasonal">Seasonal</button>
+                        <button class="btn btn--secondary component-btn" data-component="residual">Residual</button>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="decompositionChart" height="400"></canvas>
+                </div>
+            </div>
+
+            <!-- Seasonal Patterns Tab -->
+            <div id="seasonal" class="tab-panel">
+                <div class="chart-container">
+                    <h3>Hourly Temperature Pattern</h3>
+                    <canvas id="hourlyPatternChart" height="400"></canvas>
+                </div>
+                <div class="pattern-insights">
+                    <div class="insight-card">
+                        <h4>Peak Temperature Time</h4>
+                        <p>Temperatures are typically highest around 9-10 PM</p>
+                    </div>
+                    <div class="insight-card">
+                        <h4>Coldest Period</h4>
+                        <p>Lowest temperatures occur between 11 AM - 1 PM</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Model Comparison Tab -->
+            <div id="model-comparison" class="tab-panel">
+                <div class="model-charts">
+                    <div class="chart-container">
+                        <h3>Model Performance Metrics</h3>
+                        <canvas id="modelMetricsChart" height="300"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3>R-squared Comparison</h3>
+                        <canvas id="r2Chart" height="300"></canvas>
+                    </div>
+                </div>
+                <div class="model-table-container">
+                    <h3>Detailed Model Metrics</h3>
+                    <table class="model-table">
+                        <thead>
+                            <tr>
+                                <th>Model</th>
+                                <th>RMSE</th>
+                                <th>MAE</th>
+                                <th>R²</th>
+                            </tr>
+                        </thead>
+                        <tbody id="modelTableBody">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="chart-container">
+                    <h3>SARIMA vs Actual Temperature</h3>
+                    <canvas id="forecastComparisonChart" height="400"></canvas>
+                </div>
+            </div>
+
+            <!-- Forecast Tab -->
+            <div id="forecast" class="tab-panel">
+                <div class="chart-container">
+                    <h3>Future Temperature Forecast (Next 7 Days)</h3>
+                    <canvas id="futureforecastChart" height="400"></canvas>
+                </div>
+                <div class="forecast-interpretation">
+                    <div class="interpretation-card">
+                        <h4>Forecast Summary</h4>
+                        <p>The SARIMA model predicts a warming trend over the next 7 days, with temperatures ranging from 70°F to 100°F. The confidence intervals indicate increasing uncertainty for longer-term predictions.</p>
+                    </div>
+                    <div class="interpretation-card">
+                        <h4>Key Insights</h4>
+                        <ul>
+                            <li>Gradual temperature increase expected</li>
+                            <li>Peak temperatures around day 7-8</li>
+                            <li>Higher variability in later predictions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
